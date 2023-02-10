@@ -1,4 +1,4 @@
-# script-iptables
+# Script-iptables
 
 Este conjunto de regras tem como objetivo proteger o sistema contra diversos tipos de ataques e vulnerabilidades de segurança. 
 
