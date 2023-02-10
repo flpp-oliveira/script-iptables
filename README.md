@@ -1,6 +1,6 @@
 # Script-iptables
 
-Este conjunto de regras tem como objetivo proteger o sistema contra diversos tipos de ataques e vulnerabilidades de segurança. 
+Este conjunto de regras tem como objetivo proteger o sistema Linux contra diversos tipos de ataques e vulnerabilidades de segurança com IPTABLES. 
 
 ### OBSERVAÇÕES
 - O script foi testado no Ubuntu 22.04
