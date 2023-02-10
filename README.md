@@ -89,6 +89,8 @@ Bloquear esses endereços de IP pode ajudar a aumentar a segurança de uma rede,
 
 ### Bloqueia ataques de SYN Flood
 
+Este conjunto de regras bloqueia ataques de SYN Flood, que são ataques em que o invasor envia uma grande quantidade de pacotes SYN sem completar a conexão TCP. A primeira regra permite apenas um pacote SYN por segundo, enquanto a segunda regra bloqueia qualquer pacote adicional SYN além desse limite.
+
 ```
 iptables -A INPUT -p tcp --syn -m limit --limit 1/s -j ACCEPT
 iptables -A INPUT -p tcp --syn -j DROP
