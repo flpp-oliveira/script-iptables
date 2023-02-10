@@ -51,7 +51,6 @@ iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 Este conjunto de regras bloqueia ataques de spoofing, que são ataques em que um invasor falsifica o endereço IP de origem de um pacote. As regras bloqueiam pacotes de endereços IP reservados para uso local e endereços IP não atribuídos.
 
 ```
-iptables -A INPUT -s 127.0.0.0/8 -j DROP
 iptables -A INPUT -s 169.254.0.0/16 -j DROP
 iptables -A INPUT -s 172.16.0.0/12 -j DROP
 iptables -A INPUT -s 192.0.2.0/24 -j DROP
@@ -68,8 +67,6 @@ iptables -A INPUT -d 255.255.255.255 -j DRO
 Esses IPs foram bloqueados usando iptables porque eles estão em sub-redes reservadas ou não utilizadas na Internet. Essas sub-redes são geralmente reservadas para uso especial, como testes de rede, endereços multicast e endereços privados não roteáveis.
 
 Algumas dessas sub-redes são:
-
-    - 127.0.0.0/8: este é o endereço de loopback, usado para se comunicar com o próprio computador.
 
     - 169.254.0.0/16: este é o endereço de link local, usado para comunicação entre dispositivos na mesma rede local sem passar pelo roteador.
 
