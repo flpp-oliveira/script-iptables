@@ -1,15 +1,15 @@
 #!/bin/sh
 
-# bloqueia conexões de entrada ssh 
+# Bloqueia conexões de entrada ssh 
 iptables -A INPUT -p tcp --dport 22 -j DROP
 
-# permite conexões de saida ssh
+# Permite conexões de saida ssh
 iptables -A OUTPUT -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
 
-# bloqueia trafego não solicitado 
+# Bloqueia trafego não solicitado 
 iptables -A INPUT -m state --state INVALID -j DROP
 
-# bloqueia ataques de negação de serviço DoS e Ping Flood
+# Bloqueia ataques de negação de serviço DoS e Ping Flood
 iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 1/s -j ACCEPT
 iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 
@@ -31,5 +31,5 @@ iptables -A INPUT -d 255.255.255.255 -j DROP
 iptables -A INPUT -p tcp --syn -m limit --limit 1/s -j ACCEPT
 iptables -A INPUT -p tcp --syn -j DROP
 
-# salvar no iptables rules
+# Salvar no iptables rules
 iptables-save > /etc/iptables.rules
