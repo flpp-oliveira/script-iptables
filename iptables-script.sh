@@ -14,7 +14,6 @@ iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 1/s -j ACCEP
 iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 
 # Bloqueia ataques de spoofing
-iptables -A INPUT -s 127.0.0.0/8 -j DROP
 iptables -A INPUT -s 169.254.0.0/16 -j DROP
 iptables -A INPUT -s 172.16.0.0/12 -j DROP
 iptables -A INPUT -s 192.0.2.0/24 -j DROP
