@@ -13,7 +13,7 @@ chmod 700 iptables-script.sh
 
 ## Explicação de cada conjunto de regras:
 
-- Bloqueia conexões de entrada ssh
+### Bloqueia conexões de entrada ssh
 
 Este comando bloqueia qualquer pacote que chegue à máquina com o protocolo TCP e porta 22, que é a porta padrão do serviço SSH.
 
@@ -21,7 +21,7 @@ Este comando bloqueia qualquer pacote que chegue à máquina com o protocolo TCP
 iptables -A INPUT -p tcp --dport 22 -j DROP
 ```
 
-- Permite conexões de saída ssh
+### Permite conexões de saída ssh
 
 Este comando permite que a máquina inicie conexões com outros sistemas usando o protocolo TCP e porta 22 (serviço SSH).
 
@@ -29,7 +29,7 @@ Este comando permite que a máquina inicie conexões com outros sistemas usando 
 iptables -A OUTPUT -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
 ```
 
-- bloqueia trafego não solicitado
+### bloqueia trafego não solicitado
 
 Este comando bloqueia pacotes com o estado "INVALID", que são aqueles que não foram solicitados pelo sistema.
 
@@ -37,7 +37,7 @@ Este comando bloqueia pacotes com o estado "INVALID", que são aqueles que não 
 iptables -A INPUT -m state --state INVALID -j DROP
 ```
 
-- Bloqueia ataques de negação de serviço DoS e Ping Flood
+### Bloqueia ataques de negação de serviço DoS e Ping Flood
 
 Este conjunto de regras bloqueia ataques de negação de serviço (DoS) e Ping Flood. A primeira regra permite um pacote "echo-request" (ping) a cada segundo, enquanto a segunda regra bloqueia qualquer pacote adicional "echo-request" além desse limite.
 
@@ -46,7 +46,7 @@ iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 1/s -j ACCEP
 iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 ```
 
-- Bloqueia ataques de spoofing
+### Bloqueia ataques de spoofing
 
 Este conjunto de regras bloqueia ataques de spoofing, que são ataques em que um invasor falsifica o endereço IP de origem de um pacote. As regras bloqueiam pacotes de endereços IP reservados para uso local e endereços IP não atribuídos.
 
@@ -75,7 +75,7 @@ Algumas dessas sub-redes são:
 
     - 172.16.0.0/12: este é um bloco de endereços privados, usado para comunicação entre dispositivos em redes privadas, sem acesso à Internet.
 
-    - 192.0.2.0/24: este é um bloco de endereços de teste reservados, usados ​​para testes de rede e documentação.
+    - 192.0.2.0/24: este é um bloco de endereços de teste reservados, usados para testes de rede e documentação.
 
     - 224.0.0.0/4: este é o endereço de multicast, usado para transmitir pacotes para vários destinos em uma rede.
 
@@ -87,7 +87,7 @@ Algumas dessas sub-redes são:
 
 Bloquear esses endereços de IP pode ajudar a aumentar a segurança de uma rede, já que eles são geralmente considerados inseguros para se comunicar com a Internet ou com outros dispositivos na rede
 
-- Bloqueia ataques de SYN Flood
+### Bloqueia ataques de SYN Flood
 
 ```
 iptables -A INPUT -p tcp --syn -m limit --limit 1/s -j ACCEPT
